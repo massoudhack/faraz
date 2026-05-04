@@ -8,7 +8,7 @@ API_ID = int(os.environ["TELEGRAM_API_ID"])
 API_HASH = os.environ["TELEGRAM_API_HASH"]
 
 # SESSION_STRING رو اینجا مستقیم بذار
-SESSION_STRING = "اینجا_رشته_خودت_رو_بذار"
+SESSION_STRING = "1BJWap1wBu47GkqAUHhnfTTny6USARgztwGS8OvPSihvRU6bXfbNy74qn8qdkdwxN74cTJAv1toTi5YxbOlSbYm37PY3d2teigsViAG5mU1UzfOPPgBuhA-3PCvk-zBgP-pCoPkhWQYQNsKI_aepkgfKsyT3cVNawKeE-bpDGVCcEEENIpWlW0MU-L7PX1kts2DM0sw1AlNQSWZSFBVZWmYzBK0yMGARa9heeQ5ee3QZU8AG0egHaspW95cicK5EfYE9CjDpYfPe75ykbdXXRduNXltgHvQcEPxP-4LBj5hM8o6F0deRoJnXnMrje6SOiaK7rTX2C9v5Wa06WbN--TUO5STanV74="
 
 FARAZ_BOT_USERNAME = os.environ.get("FARAZ_BOT_USERNAME", "farazsignal_bot")
 TARGET_GROUP_ID = int(os.environ["TARGET_GROUP_ID"])
