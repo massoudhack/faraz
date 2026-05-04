@@ -3,33 +3,28 @@ import asyncio
 from telethon import TelegramClient, events
 from telethon.sessions import StringSession
 
-# --- Config from environment variables ---
+# --- Config ---
 API_ID = int(os.environ["TELEGRAM_API_ID"])
 API_HASH = os.environ["TELEGRAM_API_HASH"]
 
-# Fix base64 padding if missing
-SESSION_STRING = os.environ["SESSION_STRING"].strip()
-padding = len(SESSION_STRING) % 4
-if padding:
-    SESSION_STRING += "=" * (4 - padding)
+# SESSION_STRING رو اینجا مستقیم بذار
+SESSION_STRING = "اینجا_رشته_خودت_رو_بذار"
 
 FARAZ_BOT_USERNAME = os.environ.get("FARAZ_BOT_USERNAME", "farazsignal_bot")
 TARGET_GROUP_ID = int(os.environ["TARGET_GROUP_ID"])
 
 print("🚀 Faraz Forwarder starting...")
+print(f"SESSION length: {len(SESSION_STRING)}")
 
 client = TelegramClient(StringSession(SESSION_STRING), API_ID, API_HASH)
 
 @client.on(events.NewMessage())
 async def handler(event):
     sender = await event.get_sender()
-
     if not sender:
         return
-
     sender_username = getattr(sender, "username", "") or ""
     is_bot = getattr(sender, "bot", False)
-
     if sender_username.lower() == FARAZ_BOT_USERNAME.lower() or (
         is_bot and FARAZ_BOT_USERNAME.lower() in sender_username.lower()
     ):
