@@ -6,7 +6,13 @@ from telethon.sessions import StringSession
 # --- Config from environment variables ---
 API_ID = int(os.environ["TELEGRAM_API_ID"])
 API_HASH = os.environ["TELEGRAM_API_HASH"]
-SESSION_STRING = os.environ["SESSION_STRING"]
+
+# Fix base64 padding if missing
+SESSION_STRING = os.environ["SESSION_STRING"].strip()
+padding = len(SESSION_STRING) % 4
+if padding:
+    SESSION_STRING += "=" * (4 - padding)
+
 FARAZ_BOT_USERNAME = os.environ.get("FARAZ_BOT_USERNAME", "farazsignal_bot")
 TARGET_GROUP_ID = int(os.environ["TARGET_GROUP_ID"])
 
