@@ -1,7 +1,7 @@
 import os
 import asyncio
 from telethon import TelegramClient, events
-from telethon.tl.types import User
+from telethon.sessions import StringSession
 
 # --- Config from environment variables ---
 API_ID = int(os.environ["TELEGRAM_API_ID"])
@@ -12,20 +12,18 @@ TARGET_GROUP_ID = int(os.environ["TARGET_GROUP_ID"])
 
 print("🚀 Faraz Forwarder starting...")
 
-client = TelegramClient.from_session_string(SESSION_STRING, API_ID, API_HASH)
+client = TelegramClient(StringSession(SESSION_STRING), API_ID, API_HASH)
 
 @client.on(events.NewMessage())
 async def handler(event):
     sender = await event.get_sender()
 
-    # Only handle messages from bots or specific username
     if not sender:
         return
 
     sender_username = getattr(sender, "username", "") or ""
     is_bot = getattr(sender, "bot", False)
 
-    # Check if message is from Faraz bot
     if sender_username.lower() == FARAZ_BOT_USERNAME.lower() or (
         is_bot and FARAZ_BOT_USERNAME.lower() in sender_username.lower()
     ):
