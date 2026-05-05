@@ -80,7 +80,7 @@ async def send_daily_news():
 
 async def status_message():
     now = datetime.now(TEHRAN_TZ)
-    target = now.replace(hour=8, minute=0, second=0, microsecond=0)
+    target = now.replace(hour=9, minute=0, second=0, microsecond=0)
     if now >= target:
         target += timedelta(days=1)
     diff = target - now
@@ -135,7 +135,7 @@ async def news_scheduler():
     print("⏰ Scheduler شروع شد - هر روز ساعت ۸ صبح تهران")
     while True:
         now = datetime.now(TEHRAN_TZ)
-        target = now.replace(hour=8, minute=0, second=0, microsecond=0)
+        target = now.replace(hour=9, minute=0, second=0, microsecond=0)
         if now >= target:
             target += timedelta(days=1)
         wait_seconds = (target - now).total_seconds()
